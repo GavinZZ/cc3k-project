@@ -1,7 +1,12 @@
 #ifndef _HUMAN_H_
 #define _HUMAN_H_
 
-class Human {
+#include "shade.h"
+#include "drow.h"
+#include "vanpire.h"
+#include "troll.h"
+#include "goblin.h"
+class Human : public Enemy{
   public:
   virtual void beAttack(Shade *s);
   virtual void beAttack(Drow *d);
