@@ -2,7 +2,7 @@
 #define _CHARACTER_H_
 #include "subject.h"
 
-class Character : public Subject{
+class Character {
   protected:
   int health;
   int attack;
