@@ -2,6 +2,7 @@
 #define _HUMAN_H_
 
 class Human {
+  public:
   virtual void beAttack(Shade *s);
   virtual void beAttack(Drow *d);
   virtual void beAttack(Vampire *v);
