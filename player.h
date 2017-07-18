@@ -1,13 +1,14 @@
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
 
+#include "enemy.h"
 #include "shade.h"
 #include "drow.h"
 #include "troll.h"
 #include "goblin.h"
 #include "vampire.h"
 
-class Player {
+class Player ：public Character{
   protected:
   int gold;
   public:
