@@ -8,7 +8,7 @@
 #include "observer.h"
 class Player;
 
-class Enemy : public Observer{
+class Enemy : public Observer, public Subject, public Character {
   public:
   void notify(Subject &sub, string action) override;
   void attack(Player *p);
