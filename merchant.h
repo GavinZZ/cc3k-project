@@ -1,7 +1,14 @@
 #ifndef _MERCHANT_H_
 #define _MERCHANT_H_
 
-class Merchant {
+#include "shade.h"
+#include "drow.h"
+#include "vanpire.h"
+#include "troll.h"
+#include "goblin.h"
+#include "enemy.h"
+
+class Merchant : public Enemy{
   public:
   virtual void beAttack(Shade *s);
   virtual void beAttack(Drow *d);
