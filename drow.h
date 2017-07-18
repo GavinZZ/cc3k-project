@@ -4,6 +4,7 @@
 #include "player.h"
 #include "enemy.h"
 #include "human.h"
+#include "dwarf.h"
 #include "elf.h"
 #include "orcs.h"
 #include "merchant.h"
