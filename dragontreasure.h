@@ -4,7 +4,7 @@
 #include "dragon.h"
 #include "item.h"
 
-class DragonTreasure : public item{
+class DragonTreasure : public Item{
   int val;
   bool isDead;
   public:
