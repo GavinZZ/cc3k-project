@@ -6,6 +6,8 @@
 #include "vanpire.h"
 #include "troll.h"
 #include "goblin.h"
+#include "enemy.h"
+
 class Human : public Enemy{
   public:
   virtual void beAttack(Shade *s);
