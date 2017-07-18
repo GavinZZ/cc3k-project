@@ -10,6 +10,6 @@ class Display : public Observer{
   public:
   notify(Subject *sub, string action) override;
   ~Display();
-}
+};
 
 #endif
