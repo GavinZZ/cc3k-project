@@ -12,6 +12,6 @@ class Floor {
   void attack(string direction);
   void upstair();
   ~Floor();
-}
+};
 
 #endif
