@@ -1,10 +1,12 @@
 #ifndef _POTION_H_
 #define _POTION_H_
 #include <string>
-using namespace std;
 
-class Potion {
-  string type;
+#include <string>
+#include "item.h"
+
+class Potion : public Item{
+  std::string type;
   public:
   string getType();
 };
