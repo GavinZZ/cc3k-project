@@ -5,9 +5,10 @@
 #include "vanpire.h"
 #include "troll.h"
 #include "goblin.h"
+#include "observer.h"
 class Player;
 
-class Enemy {
+class Enemy : public Observer{
   public:
   void notify(Subject &sub, string action) override;
   void attack(Player *p);
