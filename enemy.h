@@ -1,11 +1,11 @@
 #ifndef _ENEMY_H_
 #define _ENEMY_H_
-#include "human.h"
-#include "dwarf.h"
-#include "elf.h"
-#include "orcs.h"
-#include "merchant.h"
-#include "dragon.h"
+#include "shade.h"
+#include "drow.h"
+#include "vanpire.h"
+#include "troll.h"
+#include "goblin.h"
+class Player;
 
 class Enemy {
   public:
