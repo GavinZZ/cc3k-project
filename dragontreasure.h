@@ -2,8 +2,9 @@
 #define _DRAGONTREASURE_H_
 
 #include "dragon.h"
+#include "item.h"
 
-class DragonTreasure {
+class DragonTreasure : public item{
   int val;
   bool isDead;
   public:
