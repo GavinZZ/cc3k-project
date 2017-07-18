@@ -8,7 +8,7 @@
 class Display : public Observer{
   vector<vector<char>> display;
   public:
-  notify(Subject *sub, string action) override;
+  notify(Subject *sub, std::string action) override;
   ~Display();
 };
 
