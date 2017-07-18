@@ -20,6 +20,6 @@ class Character : public Subject{
   int getRow();
   char getSign();
   ~Character();
-}
+};
 
 #endif
