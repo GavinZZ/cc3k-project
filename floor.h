@@ -3,8 +3,13 @@
 #include "player.h"
 #include "display.h"
 #include "item.h"
+#include "enemy.h"
 
 class Floor {
+  vector<Enemy *> enemies;
+  vector<Item *> items;
+  Player * player;
+  int ith_floor;
   public:
   Floor();
   Bool isWon();
