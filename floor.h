@@ -1,5 +1,9 @@
 #ifndef _FLOOR_H_
 #define _FLOOR_H_
+#include "player.h"
+#include "display.h"
+#include "observer.h"
+#include "item.h"
 
 class Floor {
   public:
