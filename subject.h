@@ -6,10 +6,12 @@
 class Observer;
 
 class Subject {
-public:
-    void attach(Observer *o);
-    void notifyObservers();
-    virtual ~Subject() = 0;
+   protected:
+    vector<Observer *> observers;
+   public:
+       void attach(Observer *o);
+       void notifyObservers();
+       virtual ~Subject() = 0;
 };
 
 #endif
