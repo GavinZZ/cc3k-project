@@ -1,6 +1,14 @@
 #ifndef _GOBLIN_H_
 #define _GOBLIN_H_
 
+#include "player.h"
+#include "human.h"
+#include "dwarf.h"
+#include "elf.h"
+#include "orcs.h"
+#include "merchant.h"
+#include "dragon.h"
+
 class Shade {
   public:
   void beAttack(Human *h);
