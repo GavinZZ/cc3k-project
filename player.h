@@ -9,7 +9,7 @@
 #include "vampire.h"
 class Enemy;
 
-class Player ：public Character{
+class Player ：public Character, public Subject {
   protected:
   int gold;
   public:
