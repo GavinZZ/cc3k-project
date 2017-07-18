@@ -9,7 +9,7 @@
 #include "merchant.h"
 #include "dragon.h"
 
-class Shade {
+class Vampire : public Player {
   public:
   void beAttack(Human *h);
   void beAttack(Dwarf *d);
