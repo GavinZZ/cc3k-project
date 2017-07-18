@@ -8,7 +8,7 @@
 class Potion : public Item{
   std::string type;
   public:
-  string getType();
+  std::string getType();
 };
 
 #endif
