@@ -3,8 +3,9 @@
 
 #include "subject.h"
 #include <string>
+#include "observer.h"
 
-class Display{
+class Display : public Observer{
   vector<vector<char>> display;
   public:
   notify(Subject *sub, string action) override;
