@@ -1,6 +1,7 @@
 #ifndef _OBSERVER_H_
 #define _OBSERVER_H_
 #include "subscriptions.h"
+#include "display.h"
 class Subject;
 class Enemy;
 
