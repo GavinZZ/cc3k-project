@@ -12,6 +12,8 @@ class Enemy;
 class Player ：public Character, public Subject {
   protected:
   int gold;
+  int correction_atk;
+  int correction_def;
   public:
   void notify(Subject &sub, string action) override;
   virtual void attack(Enemy *enemy);
