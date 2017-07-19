@@ -3,6 +3,13 @@
 #include <fstream>
 #include <iostream>
 #include "floor.h"
+#include "character.h"
+#include "item.h"
+class Shade;
+class Vampire;
+class Orc;
+class Dwarf;
+class Elf;
 using namespace std;
 
 int main(int argc, const char * argv[]) {
