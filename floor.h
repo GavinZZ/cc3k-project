@@ -11,7 +11,7 @@ class Floor {
   Player * player;
   int ith_floor;
   public:
-  Floor();
+  Floor(Player *p = nullptr,int ith = 1);
   Bool isWon();
   Bool isLost();
   void move_player(string direction);
