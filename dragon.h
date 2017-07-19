@@ -3,7 +3,7 @@
 
 #include "shade.h"
 #include "drow.h"
-#include "vanpire.h"
+#include "vampire.h"
 #include "troll.h"
 #include "goblin.h"
 #include "enemy.h"
