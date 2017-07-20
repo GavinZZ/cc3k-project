@@ -6,20 +6,20 @@
 #include "enemy.h"
 
 class Floor {
-  vector<Enemy *> enemies;
-  vector<Item *> items;
-  Player * player;
-  int ith_floor;
-  public:
-  Floor(Player *p = nullptr,int ith = 1);
-  Bool isWon();
-  Bool isLost();
-  void move_player(string direction);
-  void use_potion(string direction);
-  void move_enemy();
-  void attack(string direction);
-  void upstair();
-  ~Floor();
+    std::vector<Enemy *> enemies;
+    std::vector<Item *> items;
+    Player * player;
+    int ith_floor;
+public:
+    Floor(Player *p = nullptr,int ith = 1);
+    bool isWon();
+    bool isLost();
+    void move_player(std::string direction);
+    void use_potion(std::string direction);
+    void move_enemy();
+    void attack(std::string direction);
+    void upstair();
+    ~Floor();
 };
 
 #endif
