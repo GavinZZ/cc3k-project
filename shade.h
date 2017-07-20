@@ -2,21 +2,23 @@
 #define _SHADE_H_
 
 #include "player.h"
-#include "human.h"
-#include "dwarf.h"
-#include "elf.h"
-#include "orcs.h"
-#include "merchant.h"
-#include "dragon.h"
+class Human;
+class Dwarf;
+class Elf;
+class Orcs;
+class Merchant;
+class Dragon;
+
 
 class Shade : public Player{
-  public:
-  void beAttack(Human *h);
-  void beAttack(Dwarf *d);
-  void beAttack(Elf *e);
-  void beAttack(Orcs *o);
-  void beAttack(Merchant *m);
-  void beAttack(Dragon *d);
+public:
+    void attack (Enemy *enemy) override;
+    void beAttack(Human *h) override;
+    void beAttack(Dwarf *d) override;
+    void beAttack(Elf *e) override;
+    void beAttack(Orcs *o) override;
+    void beAttack(Merchant *m) override;
+    void beAttack(Dragon *d) override;
 };
 
 #endif
