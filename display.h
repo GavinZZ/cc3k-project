@@ -9,6 +9,7 @@ class Display: public Observer{
     std::vector<std::vector<char>> display;
 public:
     void notify(Subject &whoNotified, std::string action) override;
+    void changeChar(int row, int col, string item);
     ~Display();
 };
 
