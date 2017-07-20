@@ -15,9 +15,11 @@ int Character::getDefence() {
 }
 
 void Character::change(int health, int attack, int defence) {
-    health = health;
-    attack = attack;
-    defence = defence;
+    health += health;
+    attack += attack;
+    defence += defence;
+    correction_atk -= attack;
+    correction_def -= defence;
 }
 
 bool Character::isDead() {
