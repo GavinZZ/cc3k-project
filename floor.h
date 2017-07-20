@@ -20,6 +20,8 @@ public:
     void attack(std::string direction);
     void upstair();
     void changeDisplay(Display *d);
+    void push_item(Item *item);
+    void push_enemy(Enemy *enemy);
     ~Floor();
 };
 
