@@ -4,9 +4,9 @@
 #include "item.h"
 
 class Treasure : public Item {
-  int val;
-  public:
-  int getVal();
+    int val;
+public:
+    int getVal();
 };
 
 
