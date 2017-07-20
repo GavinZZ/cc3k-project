@@ -4,6 +4,8 @@
 #include "item.h"
 
 class Stair : public Item{
+  public:
+  Stair();
 };
 
 #endif
