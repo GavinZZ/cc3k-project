@@ -6,9 +6,9 @@
 #include "item.h"
 
 class Potion : public Item{
-  std::string type;
-  public:
-  std::string getType();
+    std::string type;
+public:
+    std::string getType();
 };
 
 #endif
