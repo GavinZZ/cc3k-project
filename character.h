@@ -10,6 +10,8 @@ protected:
     char sign;
     int col;
     int row;
+    int correction_atk;
+    int correction_def;
 public:
     int getHealth();
     int getAttack();
