@@ -9,12 +9,13 @@
 #include "enemy.h"
 
 class Dragon : public Enemy{
-  public:
-  virtual void beAttack(Shade *s);
-  virtual void beAttack(Drow *d);
-  virtual void beAttack(Vampire *v);
-  virtual void beAttack(Troll *t);
-  virtual void beAttack(Goblin *g);
+public:
+    void attack(Player *player) override;
+    void beAttack(Shade *s) override;
+    void beAttack(Drow *d) override;
+    void beAttack(Vampire *v) override;
+    void beAttack(Troll *t) override;
+    void beAttack(Goblin *g) override;
 };
 
 #endif
