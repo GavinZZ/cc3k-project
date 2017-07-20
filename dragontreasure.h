@@ -5,11 +5,11 @@
 #include "item.h"
 
 class DragonTreasure : public Item{
-  int val;
-  bool isDead;
-  public:
-  int getVal();
-  bool isDragonDead();  
+    int val;
+    bool isDead;
+public:
+    int getVal();
+    bool isDragonDead();
 };
 
 #endif
