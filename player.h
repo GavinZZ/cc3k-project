@@ -14,8 +14,6 @@ class Dragon;
 class Player : public Character, public Subject {
 protected:
     int gold;
-    int correction_atk;
-    int correction_def;
 public:
     void notify(Subject &sub, std::string action);
     virtual void attack(Enemy *enemy);
