@@ -19,6 +19,7 @@ public:
     void move_enemy();
     void attack(std::string direction);
     void upstair();
+    void changePlayer(Player *p);
     ~Floor();
 };
 
