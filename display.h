@@ -5,11 +5,13 @@
 #include <string>
 #include "observer.h"
 
-class Display: public Observer{
+class Display {
     std::vector<std::vector<char>> display;
 public:
-    void notify(Subject &whoNotified, std::string action) override;
-    void changeChar(int row, int col, string item);
+    Display();
+    Display(std::string filename);
+    void changeChar(int row, int col, char sign);
+    char getChar(int row, int col);
     ~Display();
 };
 
