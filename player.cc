@@ -9,10 +9,6 @@ class Merchant;
 class Dragon;
 using namespace std;
 
-void Player::notify(Subject &sub, string action) {
-    
-}
-
 void Player::changeGold(int gold) {
     this->gold += gold;
 }
@@ -20,8 +16,3 @@ void Player::changeGold(int gold) {
 int Player::getGold() {
     return this->gold;
 }
-
-void Player::notifyObservers() {
-    
-}
-
