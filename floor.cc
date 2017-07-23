@@ -19,6 +19,7 @@ Floor::Floor(string filename, Player* p, int ith) {
     string line;
     ith_floor = ith;
     onStair = false;
+    merchantHostile = false;
     int count = (ith-1)*30;
     for(int j = 0; j < count; ++j) {
         getline(iff,line);
@@ -75,7 +76,7 @@ Floor::Floor(string filename, Player* p, int ith) {
                 shared_ptr<Enemy> e{new Orcs{count % 30, j}};
                 enemy.emplace_back(e);
             } else if(line[j] == 'M') {
-                shared_ptr<Enemy> e{new Merchant{count % 30, j}};
+                shared_ptr<Enemy> e{new Merchant{count % 30, j, merchantHostile}};
                 enemy.emplace_back(e);
             } else if(line[j] == 'D') {
                 shared_ptr<Enemy> e{new Dragon{count % 30, j}};
@@ -95,6 +96,7 @@ Floor::Floor(string filename, Player* p, int ith) {
 Floor::Floor(Player *p, int ith) {
     ith_floor = ith;
     onStair = false;
+    merchantHostile = false;
     Display();
     int player_room = rand() % 5;
     int stair_room = rand() % 5;
@@ -671,7 +673,7 @@ void Floor::enemySpawn(int row, int col) {
         enemy.emplace_back(e);
         display->changeChar(row, col, 'O');
     } else if (chance <= 17) {
-        shared_ptr<Enemy> e{new Merchant{row, col}};
+        shared_ptr<Enemy> e{new Merchant{row, col, merchantHostile}};
         enemy.emplace_back(e);
         display->changeChar(row, col, 'M');
     }
@@ -899,6 +901,7 @@ void Floor::use_potion(string direction) {
         for(int i = 0; i <item.size();++i){
             if(item[i]->getRow() == potiony && item[i]->getCol() == potionx){
                 string s = item[i]->getSign();
+                // check if player is drow. if so, effects are 1.5 times stronger.
                 if(s == "RH") {
                     player->change(5);
                 } else if (s == "BA") {
@@ -916,6 +919,10 @@ void Floor::use_potion(string direction) {
             }
         }
     }
+}
+
+bool Floor::getMerchantHostile() {
+    return merchantHostile;
 }
 
 void Floor::move_enemy() {
@@ -966,13 +973,29 @@ void Floor::attack(string direction) {
     for(int i = 0;i < enemy.size();i++){
         if(enemy[i]->getRow() == enemyy && enemy[i]->getCol() == enemyx){
             player->attack(&(*enemy[i]));
-            enemy[i]->attack(&(*player));
+            if (enemy[i]->getSign() == 'M') {
+                merchantHostile = true;
+            }
             if(enemy[i]->getHealth()<=0){
                 display->changeChar(enemyy,enemyx,'.');
+                if (enemy[i]->getSign() == 'H') {
+                    player->changeGold(2);
+                } else if (enemy[i]->getSign() == 'M') {
+                    player->changeGold(4);
+                } else {
+                    player->changeGold(1);
+                }
+                // check if player is goblin. if so, steal 5 gold for every slained enemy.
                 enemy.erase(enemy.begin()+i);
             }
+            enemy[i]->attack(&(*player));
         }
     }
+}
+
+ostream &operator<<(std::ostream &out, const Floor &floor) {
+    out << floor.display;
+    return out;
 }
 
 
