@@ -6,8 +6,9 @@
 
 class DragonTreasure : public Item{
     int val;
-    bool isDead;
+    std::shared_ptr<Dragon> dragon;
 public:
+    DragonTreasure(std::shared_ptr<Dragon> dragon, int row, int col);
     int getVal();
     bool isDragonDead();
 };
