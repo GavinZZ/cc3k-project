@@ -3,6 +3,7 @@
 
 #include "subject.h"
 #include <string>
+#include <map>
 #include "observer.h"
 
 class Display {
@@ -13,6 +14,7 @@ public:
     void changeChar(int row, int col, char sign);
     char getChar(int row, int col);
     ~Display();
+    friend std::ostream &operator<<(std::ostream &out, const Display &d);
 };
 
 #endif
