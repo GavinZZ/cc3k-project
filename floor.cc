@@ -921,7 +921,7 @@ void Floor::use_potion(string direction) {
     }
 }
 
-Display * Floor::getDisplay(){
+shared_ptr<Display> Floor::getDisplay(){
     return display;
 }
 
