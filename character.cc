@@ -15,22 +15,15 @@ int Character::getDefence() {
 }
 
 void Character::change(int health, int attack, int defence) {
-    health += health;
-    attack += attack;
-    defence += defence;
+    this->health += health;
+    this->attack += attack;
+    this->defence += defence;
+    this->correction_atk -= attack;
+    this->correction_def -= defence;
 }
 
 bool Character::isDead() {
     return health <= 0;
-}
-
-bool Character::getHostile() {
-    return isHostile;
-}
-
-void Character::changePos(int row, int col) {
-    col = col;
-    row = row;
 }
 
 int Character::getCol() {
@@ -43,10 +36,6 @@ int Character::getRow() {
 
 char Character::getSign() {
     return sign;
-}
-
-void Character::healthLost(int damage) {
-    health -= damage;
 }
 
 Character::~Character() {
