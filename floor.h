@@ -19,7 +19,9 @@ class Floor {
     void itemSpawn(int row, int col);
     void enemySpawn(int row, int col);
     void goldSpawn(int row, int col);
+    bool merchantHostile;
 public:
+    bool getMerchantHostile();
     Floor(std::string filename, Player *p, int ith);
     Floor(Player *p, int ith);
     bool isWon();
@@ -30,6 +32,7 @@ public:
     bool getState();
     void attack(std::string direction);
     ~Floor();
+    friend std::ostream &operator<<(std::ostream &out, const Floor &floor);
 };
 
 #endif
