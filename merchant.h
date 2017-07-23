@@ -10,6 +10,8 @@
 
 class Merchant : public Enemy{
 public:
+    Merchant(int row, int col, bool Hostility);
+    virtual void attack(Player *p);
     virtual void beAttack(Shade *s);
     virtual void beAttack(Drow *d);
     virtual void beAttack(Vampire *v);
