@@ -1,18 +1,25 @@
 #include "item.h"
-using namespace std;
 
-int Item::getCol(){
+int Item::getCol() {
     return col;
 }
 
-int Item::getRow(){
+int Item::getRow() {
     return row;
 }
 
-int Item::getSign(){
+int Item::getVal() {
+    return val;
+}
+
+std::string Item::getSign() {
     return sign;
 }
 
-Item::~Item(){}
+bool Item::getIsDead() {
+    return isDead;
+}
 
-
+void Item::setDead() {
+    isDead = true;
+}
