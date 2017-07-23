@@ -1,15 +1,21 @@
 #ifndef _ITEM_H_
 #define _ITEM_H_
+#include <string>
 
-class Item {
+class Item  {
 protected:
     int row;
     int col;
-    int sign;
+    std::string sign;
+    bool isDead;
+    int val;
 public:
     int getCol();
     int getRow();
-    int getSign();
+    int getVal();
+    bool getIsDead();
+    void setDead();
+    std::string getSign();
     ~Item();
 };
 
