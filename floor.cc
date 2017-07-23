@@ -921,6 +921,10 @@ void Floor::use_potion(string direction) {
     }
 }
 
+Display * Floor::getDisplay(){
+    return display;
+}
+
 bool Floor::getMerchantHostile() {
     return merchantHostile;
 }
