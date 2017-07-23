@@ -3,10 +3,10 @@
 
 #include "item.h"
 
+
 class Treasure : public Item {
-    int val;
 public:
-    int getVal();
+    Treasure(std::string s, int row, int col);
 };
 
 
