@@ -79,7 +79,19 @@ char Display::getChar(int row, int col) {
 
 void Display::changeChar(int row, int col, char sign) {
     display[row][col] = sign;
+    
 }
+
+ostream &operator<<(ostream &out, const Display &d) {
+    for (int i = 0; i < 25; i ++) {
+        for (int j = 0; j < 79; j ++) {
+            out << d.display[i][j];
+        }
+        out << endl;
+    }
+    return out;
+}
+
 
 Display::~Display() {
     
