@@ -30,7 +30,7 @@ public:
     void use_potion(std::string direction);
     void move_enemy();
     bool getState();
-    Display * getDisplay();
+    std::shared_ptr<Display> getDisplay();
     void attack(std::string direction);
     ~Floor();
     friend std::ostream &operator<<(std::ostream &out, const Floor &floor);
