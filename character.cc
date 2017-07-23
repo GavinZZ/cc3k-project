@@ -18,12 +18,19 @@ void Character::change(int health, int attack, int defence) {
     health += health;
     attack += attack;
     defence += defence;
-    correction_atk -= attack;
-    correction_def -= defence;
 }
 
 bool Character::isDead() {
     return health <= 0;
+}
+
+bool Character::getHostile() {
+    return isHostile;
+}
+
+void Character::changePos(int row, int col) {
+    col = col;
+    row = row;
 }
 
 int Character::getCol() {
@@ -36,6 +43,10 @@ int Character::getRow() {
 
 char Character::getSign() {
     return sign;
+}
+
+void Character::healthLost(int damage) {
+    health -= damage;
 }
 
 Character::~Character() {
