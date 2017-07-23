@@ -13,8 +13,8 @@ class Troll;
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-    Shade s;
-    Player *p = &s;// default setting
+    Shade shade;
+    Player *p = &shade;// default setting
     cout<<"Welcome to the world of CC3K! Please chouse your character race"<<endl;
     char r;
     // s, d, v, g, t: specifies the race the player wishes to be when starting a game.
@@ -40,7 +40,7 @@ int main(int argc, const char * argv[]) {
     }
     Floor *f = nullptr;
     if(argc == 2){
-        string filename = argc[1];
+        string filename = argv[1];
         Floor floor {filename, p,1};
         f = &floor;
     } else if(argc==1){
@@ -49,21 +49,21 @@ int main(int argc, const char * argv[]) {
         f = &floor;
     }
     string s;
-    string action = "Player character has spawned." // used to print action mode
+    string action = "Player character has spawned."; // used to print action mode
     int n = 1;
     cout<<f<<endl;
     cout<<"Race:: "<<race<<" Gold:"<<p->getGold();
     cout<<"                                                  "<<"Floor: "<<n;
-    cout<<"HP: "<<p->getHealth();<<endl;
+    cout<<"HP: "<<p->getHealth()<<endl;
     cout<<"Atk: "<<p->getAttack()<<endl;
     cout<<"Def: "<<p->getDefence()<<endl;
     cout<<action<<endl;
     while(true){
-        if(p->getSign()=="T"){
+        if(p->getSign()== 'T'){
             p->change(5);
         }
         action = "";
-        cin>>S
+        cin>> s;
         if(s == "no" || s == "ne" || s == "ea" || s == "se" || s == "so" || s == "sw" || s == "we" || s == "nw"){
             f->move_player(s);
             string direction;
@@ -86,14 +86,14 @@ int main(int argc, const char * argv[]) {
             }
             action += "PC moves ";
             action += direction;
-            if(f->get_state()){
+            if(f->getState()){
                 n++;
                 if(n == 6){
                     cout<<"Congratulation! You reach the end of adventure."<<endl;
                     cout<<"Do you want to play again: r to play again, q to quit"<<endl;
                 } else {
                     if(argc == 2){
-                        string filename = argc[1];
+                        string filename = argv[1];
                         Floor floor {filename, p,n};
                         f = &floor;
                     } else if(argc==1){
@@ -151,7 +151,7 @@ int main(int argc, const char * argv[]) {
             }
             n = 1;
             if(argc == 2){
-                string filename = argc[1];
+                string filename = argv[1];
                 Floor floor {filename, p,1};
                 f = &floor;
             } else if(argc==1){
@@ -166,7 +166,7 @@ int main(int argc, const char * argv[]) {
         cout<<f;
         cout<<"Race:: "<<race<<" Gold:"<<p->getGold();
         cout<<"                                                  "<<"Floor: "<<n;
-        cout<<"HP: "<<p->getHealth();<<endl;
+        cout<<"HP: "<<p->getHealth()<<endl;
         cout<<"Atk: "<<p->getAttack()<<endl;
         cout<<"Def: "<<p->getDefence()<<endl;
         cout<<action<<"."<<endl;
