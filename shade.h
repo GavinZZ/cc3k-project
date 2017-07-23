@@ -2,6 +2,8 @@
 #define _SHADE_H_
 
 #include "player.h"
+#include <string>
+
 class Enemy;
 class Human;
 class Dwarf;
@@ -14,14 +16,14 @@ class Halfling;
 class Shade : public Player{
 public:
 	Shade();
-    void attack (Enemy *enemy) override;
-    void beAttack(Human *h) override;
-    void beAttack(Dwarf *d) override;
-    void beAttack(Elf *e) override;
-    void beAttack(Orcs *o) override;
-    void beAttack(Merchant *m) override;
-    void beAttack(Dragon *d) override;
-    void beAttack(Halfling *h) override;
+    void attack (Enemy *enemy, std::string &action) override;
+    void beAttack(Human *h, std::string &action) override;
+    void beAttack(Dwarf *d, std::string &action) override;
+    void beAttack(Elf *e, std::string &action) override;
+    void beAttack(Orcs *o, std::string &action) override;
+    void beAttack(Merchant *m, std::string &action) override;
+    void beAttack(Dragon *d, std::string &action) override;
+    void beAttack(Halfling *h, std::string &action) override;
 };
 
 #endif
