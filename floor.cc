@@ -639,9 +639,9 @@ void Floor::goldSpawn(int row, int col) {
                 }
             }
             if (!result) {
-                shared_ptr<Dragon> dragon{new Dragon{x, y}};
+                shared_ptr<Dragon> dragon{new Dragon{row+x, col+y}};
                 shared_ptr<Item> gold{new DragonTreasure{dragon, row, col}};
-                display->changeChar(x, y, 'G');
+                display->changeChar(row+x, col+y, 'G');
                 item.emplace_back(gold);
                 break;
             }
@@ -701,11 +701,20 @@ void Floor:: move_player(string direction) {
         } else if (next == 'G') {
             for (int i = 0; i < item.size(); i ++) {
                 if ((item[i]->getRow() == playery-1) && (item[i]->getCol() == playerx)) {
-                    player->changeGold(item[i]->getVal());
-                    display->changeChar(playery-1, playerx, '@');
-                    display->changeChar(playery, playerx, previous);
-                    previous = '.';
-                    item.erase(item.begin()+i);
+                    if ((item[i]->getRow() == playery+1) && (item[i]->getCol() == playerx)) {
+                        if (item[i]->getSign() == "dragon" && item[i]->getIsDead()) {
+                            player->changeGold(item[i]->getVal());
+                            display->changeChar(playery-1, playerx, '@');
+                            display->changeChar(playery, playerx, previous);
+                            item.erase(item.begin()+i);
+                        } else {
+                            player->changeGold(item[i]->getVal());
+                            display->changeChar(playery-1, playerx, '@');
+                            display->changeChar(playery, playerx, previous);
+                            previous = '.';
+                            item.erase(item.begin()+i);
+                        }
+                    }
                 }
             }
         } else if (next == 92) {
@@ -722,11 +731,18 @@ void Floor:: move_player(string direction) {
         } else if (next == 'G') {
             for (int i = 0; i < item.size(); i ++) {
                 if ((item[i]->getRow() == playery+1) && (item[i]->getCol() == playerx)) {
-                    player->changeGold(item[i]->getVal());
-                    display->changeChar(playery+1, playerx, '@');
-                    display->changeChar(playery, playerx, previous);
-                    previous = '.';
-                    item.erase(item.begin()+i);
+                    if (item[i]->getSign() == "dragon" && item[i]->getIsDead()) {
+                        player->changeGold(item[i]->getVal());
+                        display->changeChar(playery+1, playerx, '@');
+                        display->changeChar(playery, playerx, previous);
+                        item.erase(item.begin()+i);
+                    } else {
+                        player->changeGold(item[i]->getVal());
+                        display->changeChar(playery+1, playerx, '@');
+                        display->changeChar(playery, playerx, previous);
+                        previous = '.';
+                        item.erase(item.begin()+i);
+                    }
                 }
             }
         } else if (next == 92) {
@@ -743,11 +759,20 @@ void Floor:: move_player(string direction) {
         } else if (next == 'G') {
             for (int i = 0; i < item.size(); i ++) {
                 if ((item[i]->getRow() == playery) && (item[i]->getCol() == playerx-1)) {
-                    player->changeGold(item[i]->getVal());
-                    display->changeChar(playery, playerx-1, '@');
-                    display->changeChar(playery, playerx, previous);
-                    previous = '.';
-                    item.erase(item.begin()+i);
+                    if ((item[i]->getRow() == playery+1) && (item[i]->getCol() == playerx)) {
+                        if (item[i]->getSign() == "dragon" && item[i]->getIsDead()) {
+                            player->changeGold(item[i]->getVal());
+                            display->changeChar(playery, playerx-1, '@');
+                            display->changeChar(playery, playerx, previous);
+                            item.erase(item.begin()+i);
+                        } else {
+                            player->changeGold(item[i]->getVal());
+                            display->changeChar(playery, playerx-1, '@');
+                            display->changeChar(playery, playerx, previous);
+                            previous = '.';
+                            item.erase(item.begin()+i);
+                        }
+                    }
                 }
             }
         } else if (next == 92) {
@@ -764,11 +789,20 @@ void Floor:: move_player(string direction) {
         } else if (next == 'G') {
             for (int i = 0; i < item.size(); i ++) {
                 if ((item[i]->getRow() == playery) && (item[i]->getCol() == playerx+1)) {
-                    player->changeGold(item[i]->getVal());
-                    display->changeChar(playery, playerx+1, '@');
-                    display->changeChar(playery, playerx, previous);
-                    previous = '.';
-                    item.erase(item.begin()+i);
+                    if ((item[i]->getRow() == playery+1) && (item[i]->getCol() == playerx)) {
+                        if (item[i]->getSign() == "dragon" && item[i]->getIsDead()) {
+                            player->changeGold(item[i]->getVal());
+                            display->changeChar(playery, playerx+1, '@');
+                            display->changeChar(playery, playerx, previous);
+                            item.erase(item.begin()+i);
+                        } else {
+                            player->changeGold(item[i]->getVal());
+                            display->changeChar(playery, playerx+1, '@');
+                            display->changeChar(playery, playerx, previous);
+                            previous = '.';
+                            item.erase(item.begin()+i);
+                        }
+                    }
                 }
             }
         } else if (next == 92) {
@@ -785,11 +819,20 @@ void Floor:: move_player(string direction) {
         } else if (next == 'G') {
             for (int i = 0; i < item.size(); i ++) {
                 if ((item[i]->getRow() == playery-1) && (item[i]->getCol() == playerx-1)) {
-                    player->changeGold(item[i]->getVal());
-                    display->changeChar(playery-1, playerx-1, '@');
-                    display->changeChar(playery, playerx, previous);
-                    previous = '.';
-                    item.erase(item.begin()+i);
+                    if ((item[i]->getRow() == playery+1) && (item[i]->getCol() == playerx)) {
+                        if (item[i]->getSign() == "dragon" && item[i]->getIsDead()) {
+                            player->changeGold(item[i]->getVal());
+                            display->changeChar(playery-1, playerx-1, '@');
+                            display->changeChar(playery, playerx, previous);
+                            item.erase(item.begin()+i);
+                        } else {
+                            player->changeGold(item[i]->getVal());
+                            display->changeChar(playery-1, playerx-1, '@');
+                            display->changeChar(playery, playerx, previous);
+                            previous = '.';
+                            item.erase(item.begin()+i);
+                        }
+                    }
                 }
             }
         } else if (next == 92) {
@@ -806,11 +849,20 @@ void Floor:: move_player(string direction) {
         } else if (next == 'G') {
             for (int i = 0; i < item.size(); i ++) {
                 if ((item[i]->getRow() == playery-1) && (item[i]->getCol() == playerx+1)) {
-                    player->changeGold(item[i]->getVal());
-                    display->changeChar(playery-1, playerx+1, '@');
-                    display->changeChar(playery, playerx, previous);
-                    previous = '.';
-                    item.erase(item.begin()+i);
+                    if ((item[i]->getRow() == playery+1) && (item[i]->getCol() == playerx)) {
+                        if (item[i]->getSign() == "dragon" && item[i]->getIsDead()) {
+                            player->changeGold(item[i]->getVal());
+                            display->changeChar(playery-1, playerx+1, '@');
+                            display->changeChar(playery, playerx, previous);
+                            item.erase(item.begin()+i);
+                        } else {
+                            player->changeGold(item[i]->getVal());
+                            display->changeChar(playery-1, playerx+1, '@');
+                            display->changeChar(playery, playerx, previous);
+                            previous = '.';
+                            item.erase(item.begin()+i);
+                        }
+                    }
                 }
             }
         } else if (next == 92) {
@@ -827,11 +879,20 @@ void Floor:: move_player(string direction) {
         } else if (next == 'G') {
             for (int i = 0; i < item.size(); i ++) {
                 if ((item[i]->getRow() == playery+1) && (item[i]->getCol() == playerx-1)) {
-                    player->changeGold(item[i]->getVal());
-                    display->changeChar(playery+1, playerx-1, '@');
-                    display->changeChar(playery, playerx, previous);
-                    previous = '.';
-                    item.erase(item.begin()+i);
+                    if ((item[i]->getRow() == playery+1) && (item[i]->getCol() == playerx)) {
+                        if (item[i]->getSign() == "dragon" && item[i]->getIsDead()) {
+                            player->changeGold(item[i]->getVal());
+                            display->changeChar(playery+1, playerx-1, '@');
+                            display->changeChar(playery, playerx, previous);
+                            item.erase(item.begin()+i);
+                        } else {
+                            player->changeGold(item[i]->getVal());
+                            display->changeChar(playery+1, playerx-1, '@');
+                            display->changeChar(playery, playerx, previous);
+                            previous = '.';
+                            item.erase(item.begin()+i);
+                        }
+                    }
                 }
             }
         } else if (next == 92) {
@@ -848,11 +909,20 @@ void Floor:: move_player(string direction) {
         } else if (next == 'G') {
             for (int i = 0; i < item.size(); i ++) {
                 if ((item[i]->getRow() == playery+1) && (item[i]->getCol() == playerx+1)) {
-                    player->changeGold(item[i]->getVal());
-                    display->changeChar(playery+1, playerx+1, '@');
-                    display->changeChar(playery, playerx, previous);
-                    previous = '.';
-                    item.erase(item.begin()+i);
+                    if ((item[i]->getRow() == playery+1) && (item[i]->getCol() == playerx)) {
+                        if (item[i]->getSign() == "dragon" && item[i]->getIsDead()) {
+                            player->changeGold(item[i]->getVal());
+                            display->changeChar(playery+1, playerx+1, '@');
+                            display->changeChar(playery, playerx, previous);
+                            item.erase(item.begin()+i);
+                        } else {
+                            player->changeGold(item[i]->getVal());
+                            display->changeChar(playery+1, playerx+1, '@');
+                            display->changeChar(playery, playerx, previous);
+                            previous = '.';
+                            item.erase(item.begin()+i);
+                        }
+                    }
                 }
             }
         } else if (next == 92) {
@@ -921,10 +991,6 @@ void Floor::use_potion(string direction) {
     }
 }
 
-shared_ptr<Display> Floor::getDisplay(){
-    return display;
-}
-
 bool Floor::getMerchantHostile() {
     return merchantHostile;
 }
@@ -986,6 +1052,17 @@ void Floor::attack(string direction) {
                     player->changeGold(2);
                 } else if (enemy[i]->getSign() == 'M') {
                     player->changeGold(4);
+                } else if (enemy[i]->getSign() == 'D') {
+                    for (int j = 0; j < item.size(); j ++) {
+                        for (int x = -1; x < 2; x ++) {
+                            for (int y = -1; y < 2; y ++) {
+                                if ((item[j]->getRow() == enemyy+y) &&
+                                    (item[j]->getCol() == enemyx+x) &&item[j]->getSign() == "dragon") {
+                                    item[j]->setDead();
+                                }
+                            }
+                        }
+                    }
                 } else {
                     player->changeGold(1);
                 }
