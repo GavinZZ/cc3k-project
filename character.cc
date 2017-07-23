@@ -38,6 +38,10 @@ char Character::getSign() {
     return sign;
 }
 
+void Character::healthLost(int damage) {
+    health -= damage;
+}
+
 Character::~Character() {
     
 }
