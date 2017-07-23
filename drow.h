@@ -14,6 +14,7 @@ class Halfling;
 
 class Drow: public Player{
 public:
+	Drow();
     void attack (Enemy *enemy) override;
     void beAttack(Human *h) override;
     void beAttack(Dwarf *d) override;

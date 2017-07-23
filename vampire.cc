@@ -1,59 +1,62 @@
-#include "drow.h"
+#include "vampire.h"
 #include "tgmath.h"
 
-Drow::Drow() {
+Vampire::Vampire() {
 	gold = 0;
-	health = 150;
+	health = 50;
     attack = 25;
-    defence = 15;
-    sign = 'd';
+    defence = 25;
+    sign = 'v';
     col = 0;
     row = 0;
     correction_atk = 0;
     correction_def = 0;
 }
 
-void Drow::attack(Enemy *enemy) {
+void Vampire::attack(Enemy *enemy) {
 	enemy->beAttack(this);
+	if (!enemy->getSign() == 'W') health += 5;
 }
 
-void Drow::beAttack(Human *h) {
+void Vampire::beAttack(Human *h) {
 	int hit = rand() % 2 + 0;
 	int damage = ceil((100 / (100 + defence)) * 20);
 	if (hit) health -= damage;
 }
 
-void Drow::beAttack(Dwarf *d) {
+void Vampire::beAttack(Dwarf *d) {
 	int hit = rand() % 2 + 0;
 	int damage = ceil((100 / (100 + defence)) * 20);
 	if (hit) health -= damage;
 }
 
-void Drow::beAttack(Elf *e) {
+void Vampire::beAttack(Elf *e) {
+	int hit1 = rand() % 2 + 0;
+	int hit2= rand() % 2 + 0;
+	int damage = ceil((100 / (100 + defence)) * 30);
+	if (hit1) health -= damage;
+	if (hit2) health -= damage;
+}
+
+void Vampire::beAttack(Orcs *o) {
 	int hit = rand() % 2 + 0;
 	int damage = ceil((100 / (100 + defence)) * 30);
 	if (hit) health -= damage;
 }
 
-void Drow::beAttack(Orcs *o) {
-	int hit = rand() % 2 + 0;
-	int damage = ceil((100 / (100 + defence)) * 30);
-	if (hit) health -= damage;
-}
-
-void Drow::beAttack(Merchant *m) {
+void Vampire::beAttack(Merchant *m) {
 	int hit = rand() % 2 + 0;
 	int damage = ceil((100 / (100 + defence)) * 70);
 	if (hit) health -= damage;
 }
 
-void Drow::beAttack(Dragon *d) {
+void Vampire::beAttack(Dragon *d) {
 	int hit = rand() % 2 + 0;
 	int damage = ceil((100 / (100 + defence)) * 20);
 	if (hit) health -= damage;
 }
 
-void Drow::beAttack(Halfling *h) {
+void Vampire::beAttack(Halfling *h) {
 	int hit = rand() % 2 + 0;
 	int damage = ceil((100 / (100 + defence)) * 15);
 	if (hit) health -= damage;
