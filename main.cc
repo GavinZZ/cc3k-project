@@ -169,6 +169,6 @@ int main(int argc, const char * argv[]) {
         cout<<"HP: "<<p->getHealth();<<endl;
         cout<<"Atk: "<<p->getAttack()<<endl;
         cout<<"Def: "<<p->getDefence()<<endl;
-        cout<<action<<endl;
+        cout<<action<<"."<<endl;
     }
 }
