@@ -10,12 +10,12 @@ class Elf;
 class Orcs;
 class Merchant;
 class Dragon;
+class Halfling;
 
 class Player : public Character, public Subject {
 protected:
     int gold;
 public:
-    void notify(Subject &sub, std::string action);
     virtual void attack(Enemy *enemy);
     virtual void beAttack(Human *h);
     virtual void beAttack(Dwarf *d);
@@ -23,6 +23,7 @@ public:
     virtual void beAttack(Orcs *o);
     virtual void beAttack(Dragon *d);
     virtual void beAttack(Merchant *m);
+    virtual void beAttack(Halfling *h);
     void changeGold(int gold);
     int getGold();
     void notifyObservers();
