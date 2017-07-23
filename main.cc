@@ -139,15 +139,19 @@ int main(int argc, const char * argv[]) {
             if(r == 'v'){
                 Vampire v;
                 p = &v;
+                race = "Vampire";
             } else if (r =='g'){
                 Goblin g;
                 p = &g;
+                race = "Goblin";
             } else if(r == 'd'){
                 Drow d;
                 p = &d;
+                race = "Drow";
             } else if(r == 't'){
                 Troll t;
                 p = &t;
+                race = "Troll";
             }
             n = 1;
             if(argc == 2){
