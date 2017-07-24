@@ -21,3 +21,11 @@ void Player::changeCorrection(){
     this->defence-=correction_def;
     this->Character::attack-=correction_atk;
 }
+
+void Player::CA(int val) {
+    correction_atk += val;
+}
+
+void Player::CD(int val) {
+    correction_def += val;
+}

@@ -27,6 +27,7 @@ public:
     int getRow();
     char getSign();
     void healthLost(int damage);
+    void setCorrection();
     ~Character();
     std::string intToStr(int num);
 };

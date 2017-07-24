@@ -1,7 +1,6 @@
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
 
-#include "subject.h"
 #include "character.h"
 class Enemy;
 class Human;
@@ -26,6 +25,8 @@ public:
     virtual void beAttack(Halfling *h, std::string &action) = 0;
     void changeGold(int gold);
     void changeCorrection();
+    void CA(int val);
+    void CD(int val);
     int getGold();
 };
 

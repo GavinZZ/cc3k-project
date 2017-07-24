@@ -1046,15 +1046,19 @@ void Floor::use_potion(string direction, string &action) {
                 } else if (s == "BA") {
                     if (player->getSign() == 'D') {
                         player->change(0, 7.5);
+                        player->CA(7.5);
                     } else {
                         player->change(0,5);
+                        player->CA(5);
                     }
                     action = "PC uses " + s;
                 } else if (s == "BD") {
                     if (player->getSign() == 'D') {
                         player->change(0, 0, 7.5);
+                        player->CD(7.5);
                     } else {
                         player->change(0,0,5);
+                        player->CD(5);
                     }
                     action = "PC uses " + s;
                 } else if (s == "PH") {
@@ -1067,15 +1071,19 @@ void Floor::use_potion(string direction, string &action) {
                 } else if (s == "WA") {
                     if (player->getSign() == 'D') {
                         player->change(0, -7.5);
+                        player->CA(-7.5);
                     } else {
                         player->change(0,-5);
+                        player->CA(-5);
                     }
                     action = "PC uses " + s;
                 } else if (s == "WD") {
                     if (player->getSign() == 'D') {
                         player->change(0, 0, -7.5);
+                        player->CD(-7.5);
                     } else {
                         player->change(0,0,-5);
+                        player->CD(-5);
                     }
                     action = "PC uses " + s;
                 }
@@ -1100,6 +1108,24 @@ void Floor::move_enemy(string &action) {
     for(int i = 0; i<enemy.size();++i) {
         if((enemy[i]->getCol()==playerx+1 || enemy[i]->getCol() == playerx-1 || enemy[i]->getCol() == playerx) && (enemy[i]->getRow() == playery+1 || enemy[i]->getRow() == playery-1 || enemy[i]->getRow() == playery)){
             enemy[i]->attack(&(*player), action);
+            if (enemy[i]->getSign() == 'M' && enemy[i]->getHostile() == false) {
+                int movex;
+                int movey;
+                while (1) {
+                    movex = rand () % 3 + -1;
+                    movey = rand () % 3 + -1;
+                    if (movex != 0 || movey != 0) break;
+                }
+                int newy = enemy[i]->getRow()+movey;
+                int newx = enemy[i]->getCol()+movex;
+                char next = display->getChar(newy, newx);
+                if (next == '.' && enemy[i]->getSign() != 'D') {
+                    display->changeChar(enemy[i]->getRow(), enemy[i]->getCol(), '.');
+                    enemy[i]->changePos(newy, newx);
+                    display->changeChar(newy, newx, enemy[i]->getSign());
+                }
+                
+            }
             if(enemy[i]->getSign() == 'D') {
                 da = true;
             }

@@ -23,8 +23,6 @@ void Character::change(int health, int attack, int defence) {
     this->health += health;
     this->attack += attack;
     this->defence += defence;
-    correction_atk += attack;
-    correction_def += defence;
 }
 
 bool Character::isDead() {
@@ -33,6 +31,11 @@ bool Character::isDead() {
 
 bool Character::getHostile() {
     return isHostile;
+}
+
+void Character::setCorrection() {
+    correction_atk = 0;
+    correction_def = 0;
 }
 
 void Character::changePos(int row, int col) {

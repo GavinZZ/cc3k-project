@@ -108,6 +108,7 @@ int main(int argc, const char* argv[]) {
                     cout<<"Do you want to play again: r to play again, q to quit"<<endl;
                 } else {
                     p->changeCorrection();
+                    p->setCorrection();
                     if(argc == 2){
                         string filename = argv[1];
                         Floor floor {filename, p,n};
@@ -191,7 +192,7 @@ int main(int argc, const char* argv[]) {
         }
     }
         if (s == "q") {
-            cout<<"Thanks for your adventure. Good luck next time."<<endl;
+            cout<<"Game ended."<<endl;
             break;
         }
     }
