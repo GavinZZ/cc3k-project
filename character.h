@@ -1,7 +1,7 @@
 #ifndef _CHARACTER_H_
 #define _CHARACTER_H_
 
-
+#include <iostream>
 
 class Character {
 protected:
@@ -12,11 +12,14 @@ protected:
     int col;
     int row;
     bool isHostile;
+    int correction_atk = 0;
+    int correction_def = 0;
 public:
     bool getHostile();
     int getHealth();
     int getAttack();
     int getDefence();
+    void setHealth();
     void change(int health = 0, int attack = 0, int defence = 0);
     void changePos(int row, int col);
     bool isDead();
@@ -25,6 +28,7 @@ public:
     char getSign();
     void healthLost(int damage);
     ~Character();
+    std::string intToStr(int num);
 };
 
 #endif
