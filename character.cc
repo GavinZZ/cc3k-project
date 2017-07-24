@@ -1,5 +1,6 @@
 #include "character.h"
 #include <iostream>
+#include <sstream>
 using namespace std;
 
 int Character::getHealth() {
@@ -14,16 +15,29 @@ int Character::getDefence() {
     return defence;
 }
 
+void Character::setHealth() {
+    this->health = 120;
+}
+
 void Character::change(int health, int attack, int defence) {
     this->health += health;
     this->attack += attack;
     this->defence += defence;
-    this->correction_atk -= attack;
-    this->correction_def -= defence;
+    correction_atk += attack;
+    correction_def += defence;
 }
 
 bool Character::isDead() {
     return health <= 0;
+}
+
+bool Character::getHostile() {
+    return isHostile;
+}
+
+void Character::changePos(int row, int col) {
+    this->col = col;
+    this->row = row;
 }
 
 int Character::getCol() {
@@ -40,6 +54,14 @@ char Character::getSign() {
 
 void Character::healthLost(int damage) {
     health -= damage;
+}
+
+string Character::intToStr(int num) {
+    string result;
+    stringstream ss;
+    ss << num;
+    result = ss.str();
+    return result;
 }
 
 Character::~Character() {
