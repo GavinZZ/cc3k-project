@@ -23,3 +23,7 @@ bool Item::getIsDead() {
 void Item::setDead() {
     isDead = true;
 }
+
+Item::~Item() {
+    
+}

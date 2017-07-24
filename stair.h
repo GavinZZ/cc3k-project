@@ -4,8 +4,8 @@
 #include "item.h"
 
 class Stair : public Item{
-  public:
-  Stair();
+public:
+    Stair(int row, int col);
 };
 
 #endif

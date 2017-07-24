@@ -8,6 +8,7 @@
 
 #include "orcs.h"
 #include "tgmath.h"
+using namespace std;
 
 
 Orcs::Orcs(int row, int col) {
@@ -20,34 +21,62 @@ Orcs::Orcs(int row, int col) {
     isHostile = false;
 }
 
-void Orcs::attack(Player *p) {
+void Orcs::attack(Player *p, string &action) {
     int onHit = rand() % 2;
     if (onHit == 1) {
-        p->beAttack(this);
+        p->beAttack(this, action);
+    } else {
+        string string = ", O deals 0 to PC";
+        action += string;
     }
 }
 
-void Orcs::beAttack(Shade* s) {
-    int damage = ceil((100/(100+this->defence)))*s->getAttack();
+void Orcs::beAttack(Shade* s, string &action) {
+    int damage = 0;
+    damage = ceil(s->getAttack()*100/(100+this->defence));
     this->health -= damage;
+    string d = intToStr(damage);
+    string heal = intToStr(this->health);
+    string string = "PC deals " + d + " to " + this->getSign() + "(" + heal + ")";
+    action += string;
 }
 
-void Orcs::beAttack(Drow* d) {
-    int damage = ceil((100/(100+this->defence)))*d->getAttack();
+void Orcs::beAttack(Drow* d, string &action) {
+    int damage = 0;
+    damage = ceil(d->getAttack()*100/(100+this->defence));
     this->health -= damage;
+    string dd = intToStr(damage);
+    string heal = intToStr(this->health);
+    string string = "PC deals " + dd + " to " + this->getSign() + "(" + heal + ")";
+    action += string;
 }
 
-void Orcs::beAttack(Vampire* v) {
-    int damage = ceil((100/(100+this->defence)))*v->getAttack();
+void Orcs::beAttack(Vampire* v, string &action) {
+    v->healthLost(-5);
+    int damage = 0;
+    damage = ceil(v->getAttack()*100/(100+this->defence));
     this->health -= damage;
-    v->healthLost(5);
+    string d = intToStr(damage);
+    string heal = intToStr(this->health);
+    string string = "PC deals " + d + " to " + this->getSign() + "(" + heal + ")";
+    action += string;
 }
-void Orcs::beAttack(Troll *t) {
-    int damage = ceil((100/(100+this->defence)))*t->getAttack();
+void Orcs::beAttack(Troll *t, string &action) {
+    int damage = 0;
+    damage = ceil(t->getAttack()*100/(100+this->defence));
     this->health -= damage;
+    string d = intToStr(damage);
+    string heal = intToStr(this->health);
+    string string = "PC deals " + d + " to " + this->getSign() + "(" + heal + ")";
+    action += string;
 }
 
-void Orcs::beAttack(Goblin *g) {
-    int damage = ceil((100/(100+this->defence)))*g->getAttack();
+void Orcs::beAttack(Goblin *g, string &action) {
+    int damage = 0;
+    damage = ceil(g->getAttack()*100/(100+this->defence));
     this->health -= damage;
+    string d = intToStr(damage);
+    string heal = intToStr(this->health);
+    string string = "PC deals " + d + " to " + this->getSign() + "(" + heal + ")";
+    action += string;
 }

@@ -16,3 +16,8 @@ void Player::changeGold(int gold) {
 int Player::getGold() {
     return this->gold;
 }
+
+void Player::changeCorrection(){
+    this->defence-=correction_def;
+    this->Character::attack-=correction_atk;
+}

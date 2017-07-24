@@ -11,12 +11,12 @@
 class Merchant : public Enemy{
 public:
     Merchant(int row, int col, bool Hostility);
-    virtual void attack(Player *p);
-    virtual void beAttack(Shade *s);
-    virtual void beAttack(Drow *d);
-    virtual void beAttack(Vampire *v);
-    virtual void beAttack(Troll *t);
-    virtual void beAttack(Goblin *g);
+    virtual void attack(Player *p, std::string &action);
+    virtual void beAttack(Shade *s, std::string &action);
+    virtual void beAttack(Drow *d, std::string &action);
+    virtual void beAttack(Vampire *v, std::string &action);
+    virtual void beAttack(Troll *t, std::string &action);
+    virtual void beAttack(Goblin *g, std::string &action);
 };
 
 #endif

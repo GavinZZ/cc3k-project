@@ -5,20 +5,19 @@
 #include "vampire.h"
 #include "troll.h"
 #include "goblin.h"
-#include "observer.h"
-#include "subject.h"
 class Player;
 
-class Enemy: public Observer, public Subject, public Character {
+class Enemy: public Character {
+protected:
+    bool isHostile = false;
 public:
-    void notify(Subject &sub, std::string action) override;
-    virtual void attack(Player *p);
-    virtual void beAttack(Shade *s);
-    virtual void beAttack(Drow *d);
-    virtual void beAttack(Vampire *v);
-    virtual void beAttack(Troll *t);
-    virtual void beAttack(Goblin *g);
-    void notifyObserver();
+    void changeHostile();
+    virtual void attack(Player *p, std::string &action) = 0;
+    virtual void beAttack(Shade *s, std::string &action) = 0;
+    virtual void beAttack(Drow *d, std::string &action) = 0;
+    virtual void beAttack(Vampire *v, std::string &action) = 0;
+    virtual void beAttack(Troll *t, std::string &action) = 0;
+    virtual void beAttack(Goblin *g, std::string &action) = 0;
 };
 
 #endif

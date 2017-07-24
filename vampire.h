@@ -14,7 +14,7 @@ class Halfling;
 
 class Vampire : public Player {
 public:
-	Vampire();
+    Vampire();
     void attack (Enemy *enemy, std::string &action) override;
     void beAttack(Human *h, std::string &action) override;
     void beAttack(Dwarf *d, std::string &action) override;

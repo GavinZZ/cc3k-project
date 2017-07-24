@@ -11,12 +11,12 @@
 class Halfling : public Enemy {
 public:
     Halfling(int row, int col);
-    void attack(Player *player) override;
-    void beAttack(Shade *s) override;
-    void beAttack(Drow *d) override;
-    void beAttack(Vampire *v) override;
-    void beAttack(Troll *t) override;
-    void beAttack(Goblin *g) override;
+    void attack(Player *player, std::string &action) override;
+    void beAttack(Shade *s, std::string &action) override;
+    void beAttack(Drow *d, std::string &action) override;
+    void beAttack(Vampire *v, std::string &action) override;
+    void beAttack(Troll *t, std::string &action) override;
+    void beAttack(Goblin *g, std::string &action) override;
 };
 
 #endif

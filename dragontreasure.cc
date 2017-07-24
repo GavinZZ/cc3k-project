@@ -12,9 +12,9 @@ using namespace std;
 DragonTreasure::DragonTreasure(shared_ptr<Dragon> dragon, int row, int col) {
     val = 6;
     sign = "dragon";
-    row = row;
-    col = col;
-    dragon = dragon;
+    this->row = row;
+    this->col = col;
+    this->dragon = dragon;
     isDead = false;
 }
 

@@ -9,7 +9,7 @@
 
 #include "merchant.h"
 #include "tgmath.h"
-
+using namespace std;
 
 Merchant::Merchant(int row, int col, bool hosility) {
     this->row = row;
@@ -21,40 +21,69 @@ Merchant::Merchant(int row, int col, bool hosility) {
     isHostile = hosility;
 }
 
-void Merchant::attack(Player *p) {
-    if (getHostile()) {
+void Merchant::attack(Player *p, string &action) {
+    if (isHostile) {
         int onHit = rand() % 2;
         if (onHit == 1) {
-            p->beAttack(this);
+            p->beAttack(this, action);
+        } else {
+            string string = ", M deals 0 to PC";
+            action += string;
         }
     }
 }
 
-void Merchant::beAttack(Shade* s) {
+void Merchant::beAttack(Shade* s, string &action) {
     isHostile = true;
-    int damage = ceil((100/(100+this->defence)))*s->getAttack();
+    int damage = 0;
+    damage = ceil(s->getAttack()*100/(100+this->defence));
     this->health -= damage;
+    string d = intToStr(damage);
+    string heal = intToStr(this->health);
+    string string = "PC deals " + d + " to " + this->getSign() + "(" + heal + ")";
+    action += string;
 }
 
-void Merchant::beAttack(Drow* d) {
+void Merchant::beAttack(Drow* d, string &action) {
     isHostile = true;
-    int damage = ceil((100/(100+this->defence)))*d->getAttack();
+    int damage = 0;
+    damage = ceil(d->getAttack()*100/(100+this->defence));
     this->health -= damage;
+    string dd = intToStr(damage);
+    string heal = intToStr(this->health);
+    string string = "PC deals " + dd + " to " + this->getSign() + "(" + heal + ")";
+    action += string;
 }
 
-void Merchant::beAttack(Vampire* v) {
+void Merchant::beAttack(Vampire* v, string &action) {
+    v->healthLost(-5);
     isHostile = true;
-    int damage = ceil((100/(100+this->defence)))*v->getAttack();
+    int damage = 0;
+    damage = ceil(v->getAttack()*100/(100+this->defence));
     this->health -= damage;
+    string d = intToStr(damage);
+    string heal = intToStr(this->health);
+    string string = "PC deals " + d + " to " + this->getSign() + "(" + heal + ")";
+    action += string;
 }
-void Merchant::beAttack(Troll *t) {
+void Merchant::beAttack(Troll *t, string &action) {
     isHostile = true;
-    int damage = ceil((100/(100+this->defence)))*t->getAttack();
+    int damage = 0;
+    damage = ceil(t->getAttack()*100/(100+this->defence));
     this->health -= damage;
+    string d = intToStr(damage);
+    string heal = intToStr(this->health);
+    string string = "PC deals " + d + " to " + this->getSign() + "(" + heal + ")";
+    action += string;
 }
 
-void Merchant::beAttack(Goblin *g) {
+void Merchant::beAttack(Goblin *g, string &action) {
     isHostile = true;
-    int damage = ceil((100/(100+this->defence)))*g->getAttack();
+    int damage = 0;
+    damage = ceil(g->getAttack()*100/(100+this->defence));
     this->health -= damage;
+    string d = intToStr(damage);
+    string heal = intToStr(this->health);
+    string string = "PC deals " + d + " to " + this->getSign() + "(" + heal + ")";
+    action += string;
 }

@@ -15,15 +15,9 @@ Treasure::Treasure(string s, int row, int col) {
         val = 2;
     } else if (s == "small") {
         val = 1;
+    } else if (s == "merchantH") {
+        val = 6;
     }
-    row = row;
-    col = col;
-}
-
-int Treasure::getVal() {
-    if (sign == "small") {
-        return 1;
-    } else if (sign == "normal") {
-        return 2;
-    }
+    this->row = row;
+    this->col = col;
 }

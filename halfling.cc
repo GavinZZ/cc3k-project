@@ -8,6 +8,7 @@
 
 #include "halfling.h"
 #include "tgmath.h"
+using namespace std;
 
 
 Halfling::Halfling(int row, int col) {
@@ -20,50 +21,79 @@ Halfling::Halfling(int row, int col) {
     isHostile = false;
 }
 
-void Halfling::attack(Player *p) {
+void Halfling::attack(Player *p, string &action) {
     int onHit = rand() % 2;
     if (onHit == 1) {
-        p->beAttack(this);
+        p->beAttack(this, action);
+    } else {
+        string string = ", L deals 0 to PC";
+        action += string;
     }
 }
 
-void Halfling::beAttack(Shade* s) {
+void Halfling::beAttack(Shade* s, string &action) {
     int onHit = rand() % 2;
+    int damage = 0;
     if (onHit) {
-        int damage = ceil((100/(100+this->defence)))*s->getAttack();
+        damage = ceil(s->getAttack()*100/(100+this->defence));
         this->health -= damage;
     }
+    string d = intToStr(damage);
+    string heal = intToStr(this->health);
+    string string = "PC deals " + d + " to " + this->getSign() + "(" + heal + ")";
+    action += string;
 }
 
-void Halfling::beAttack(Drow* d) {
+void Halfling::beAttack(Drow* d, string &action) {
     int onHit = rand() % 2;
+    int damage = 0;
     if (onHit) {
-        int damage = ceil((100/(100+this->defence)))*d->getAttack();
+        damage = ceil(d->getAttack()*100/(100+this->defence));
         this->health -= damage;
     }
+    string dd = intToStr(damage);
+    string heal = intToStr(this->health);
+    string string = "PC deals " + dd + " to " + this->getSign() + "(" + heal + ")";
+    action += string;
 }
 
-void Halfling::beAttack(Vampire* v) {
+void Halfling::beAttack(Vampire* v, string &action) {
     int onHit = rand() % 2;
+    int damage = 0;
     if (onHit) {
-        int damage = ceil((100/(100+this->defence)))*v->getAttack();
+        v->healthLost(-5);
+        damage = ceil(v->getAttack()*100/(100+this->defence));
         this->health -= damage;
     }
+    string d = intToStr(damage);
+    string heal = intToStr(this->health);
+    string string = "PC deals " + d + " to " + this->getSign() + "(" + heal + ")";
+    action += string;
 }
-void Halfling::beAttack(Troll *t) {
+void Halfling::beAttack(Troll *t, string &action) {
     int onHit = rand() % 2;
+    int damage = 0;
     if (onHit) {
-        int damage = ceil((100/(100+this->defence)))*t->getAttack();
+        damage = ceil(t->getAttack()*100/(100+this->defence));
         this->health -= damage;
     }
+    string d = intToStr(damage);
+    string heal = intToStr(this->health);
+    string string = "PC deals " + d + " to " + this->getSign() + "(" + heal + ")";
+    action += string;
 }
 
-void Halfling::beAttack(Goblin *g) {
+void Halfling::beAttack(Goblin *g, string &action) {
     int onHit = rand() % 2;
+    int damage = 0;
     if (onHit) {
-        int damage = ceil((100/(100+this->defence)))*g->getAttack();
+        damage = ceil(g->getAttack()*100/(100+this->defence));
         this->health -= damage;
     }
+    string d = intToStr(damage);
+    string heal = intToStr(this->health);
+    string string = "PC deals " + d + " to " + this->getSign() + "(" + heal + ")";
+    action += string;
 }
 
 

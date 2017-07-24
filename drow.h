@@ -14,8 +14,8 @@ class Halfling;
 
 class Drow: public Player{
 public:
-	Drow();
-   void attack (Enemy *enemy, std::string &action) override;
+    Drow();
+    void attack (Enemy *enemy, std::string &action) override;
     void beAttack(Human *h, std::string &action) override;
     void beAttack(Dwarf *d, std::string &action) override;
     void beAttack(Elf *e, std::string &action) override;

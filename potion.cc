@@ -12,6 +12,6 @@ using namespace std;
 Potion::Potion(string s, int row, int col) {
     val = -1;
     sign = s;
-    row = row;
-    col = col;
+    this->row = row;
+    this->col = col;
 }

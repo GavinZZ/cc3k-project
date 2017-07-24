@@ -3,7 +3,7 @@
 
 #include "dragon.h"
 #include "item.h"
-
+#include <memory>
 class DragonTreasure : public Item{
     int val;
     std::shared_ptr<Dragon> dragon;

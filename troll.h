@@ -14,7 +14,7 @@ class Halfling;
 
 class Troll : public Player {
 public:
-	Troll();
+    Troll();
     void attack (Enemy *enemy, std::string &action) override;
     void beAttack(Human *h, std::string &action) override;
     void beAttack(Dwarf *d, std::string &action) override;
