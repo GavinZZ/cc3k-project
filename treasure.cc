@@ -16,7 +16,7 @@ Treasure::Treasure(string s, int row, int col) {
     } else if (s == "small") {
         val = 1;
     } else if (s == "merchantH") {
-        val = 6;
+        val = 4;
     }
     this->row = row;
     this->col = col;

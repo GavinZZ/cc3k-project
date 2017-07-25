@@ -129,7 +129,9 @@ Floor::Floor(Player *p, int ith) {
     ith_floor = ith;
     onStair = false;
     merchantHostile = false;
-    Display();
+    previous = '.';
+    shared_ptr<Display> d{new Display("default.txt")};
+    display = d;
     int enemy_count = 0;
     int item_count = 0;
     int gold_count = 0;
@@ -142,11 +144,6 @@ Floor::Floor(Player *p, int ith) {
                 int col = rand() % 26 + 3;
                 for (int i = 0; i < enemy.size(); i ++) {
                     if (enemy[i]->getCol() == col && enemy[i]->getRow() == row) {
-                        result = true;
-                    }
-                }
-                for (int i = 0; i < item.size(); i ++) {
-                    if (item[i]->getCol() == col && item[i]->getRow() == row) {
                         result = true;
                     }
                 }
@@ -165,11 +162,6 @@ Floor::Floor(Player *p, int ith) {
                         result = true;
                     }
                 }
-                for (int i = 0; i < item.size(); i ++) {
-                    if (item[i]->getCol() == col && item[i]->getRow() == row) {
-                        result = true;
-                    }
-                }
                 if (!result) {
                     enemySpawn(row, col);
                     break;
@@ -179,14 +171,9 @@ Floor::Floor(Player *p, int ith) {
             while (1) {
                 bool result = false;
                 int row = rand() % 3 + 10;
-                int col = rand() % 12 + 37;
+                int col = rand() % 12 + 38;
                 for (int i = 0; i < enemy.size(); i ++) {
                     if (enemy[i]->getCol() == col && enemy[i]->getRow() == row) {
-                        result = true;
-                    }
-                }
-                for (int i = 0; i < item.size(); i ++) {
-                    if (item[i]->getCol() == col && item[i]->getRow() == row) {
                         result = true;
                     }
                 }
@@ -203,15 +190,10 @@ Floor::Floor(Player *p, int ith) {
                 if (row <= 18) {
                     col = rand() % 11 + 65;
                 } else {
-                    col = rand() % 39 + 36;
+                    col = rand() % 39 + 37;
                 }
                 for (int i = 0; i < enemy.size(); i ++) {
                     if (enemy[i]->getCol() == col && enemy[i]->getRow() == row) {
-                        result = true;
-                    }
-                }
-                for (int i = 0; i < item.size(); i ++) {
-                    if (item[i]->getCol() == col && item[i]->getRow() == row) {
                         result = true;
                     }
                 }
@@ -221,31 +203,30 @@ Floor::Floor(Player *p, int ith) {
                 }
             }
         } else if (chamber == 4) {
-            bool result = false;
-            int col = 0;
-            int row = rand() % 10 + 3;
-            if (row <= 4) {
-                col = rand() % 23 + 38;
-            } else if (row == 5) {
-                col = rand() %  31 + 38;
-            } else if (row == 6) {
-                col = rand() % 34 + 38;
-            } else {
-                col = rand() % 15 + 61;
-            }
-            for (int i = 0; i < enemy.size(); i ++) {
-                if (enemy[i]->getCol() == col && enemy[i]->getRow() == row) {
-                    result = true;
+            while (1) {
+                bool result = false;
+                int col = 0;
+                int row = rand() % 10 + 3;
+                if (row <= 4) {
+                    col = rand() % 23 + 39;
+                } else if (row == 5) {
+                    col = rand() %  31 + 39;
+                } else if (row == 6) {
+                    col = rand() % 34 + 39;
+                } else {
+                    col = rand() % 15 + 61;
                 }
-            }
-            for (int i = 0; i < item.size(); i ++) {
-                if (item[i]->getCol() == col && item[i]->getRow() == row) {
-                    result = true;
+                for (int i = 0; i < enemy.size(); i ++) {
+                    if (enemy[i]->getCol() == col && enemy[i]->getRow() == row) {
+                        result = true;
+                    }
                 }
-            }
-            if (!result) {
-                enemySpawn(row, col);
-                break;
+                if (!result) {
+                    enemySpawn(row, col);
+                    break;
+                }
+
+                
             }
         }
         enemy_count ++;
@@ -296,7 +277,7 @@ Floor::Floor(Player *p, int ith) {
             while (1) {
                 bool result = false;
                 int row = rand() % 3 + 10;
-                int col = rand() % 12 + 37;
+                int col = rand() % 12 + 38;
                 for (int i = 0; i < item.size(); i ++) {
                     if (item[i]->getCol() == col && item[i]->getRow() == row) {
                         result = true;
@@ -320,7 +301,7 @@ Floor::Floor(Player *p, int ith) {
                 if (row <= 18) {
                     col = rand() % 11 + 65;
                 } else {
-                    col = rand() % 39 + 36;
+                    col = rand() % 39 + 37;
                 }
                 for (int i = 0; i < item.size(); i ++) {
                     if (item[i]->getCol() == col && item[i]->getRow() == row) {
@@ -338,31 +319,33 @@ Floor::Floor(Player *p, int ith) {
                 }
             }
         } else if (chamber == 4) {
-            bool result = false;
-            int col = 0;
-            int row = rand() % 10 + 3;
-            if (row <= 4) {
-                col = rand() % 23 + 38;
-            } else if (row == 5) {
-                col = rand() %  31 + 38;
-            } else if (row == 6) {
-                col = rand() % 34 + 38;
-            } else {
-                col = rand() % 15 + 61;
-            }
-            for (int i = 0; i < item.size(); i ++) {
-                if (item[i]->getCol() == col && item[i]->getRow() == row) {
-                    result = true;
+            while (1) {
+                bool result = false;
+                int col = 0;
+                int row = rand() % 10 + 3;
+                if (row <= 4) {
+                    col = rand() % 23 + 39;
+                } else if (row == 5) {
+                    col = rand() %  31 + 39;
+                } else if (row == 6) {
+                    col = rand() % 34 + 39;
+                } else {
+                    col = rand() % 15 + 61;
                 }
-            }
-            for (int i = 0; i < enemy.size(); i ++) {
-                if (enemy[i]->getCol() == col && enemy[i]->getRow() == row) {
-                    result = true;
+                for (int i = 0; i < item.size(); i ++) {
+                    if (item[i]->getCol() == col && item[i]->getRow() == row) {
+                        result = true;
+                    }
                 }
-            }
-            if (!result) {
-                itemSpawn(row, col);
-                break;
+                for (int i = 0; i < enemy.size(); i ++) {
+                    if (enemy[i]->getCol() == col && enemy[i]->getRow() == row) {
+                        result = true;
+                    }
+                }
+                if (!result) {
+                    itemSpawn(row, col);
+                    break;
+                }
             }
         }
         item_count ++;
@@ -413,7 +396,7 @@ Floor::Floor(Player *p, int ith) {
             while (1) {
                 bool result = false;
                 int row = rand() % 3 + 10;
-                int col = rand() % 12 + 37;
+                int col = rand() % 12 + 38;
                 for (int i = 0; i < item.size(); i ++) {
                     if (item[i]->getCol() == col && item[i]->getRow() == row) {
                         result = true;
@@ -437,7 +420,7 @@ Floor::Floor(Player *p, int ith) {
                 if (row <= 18) {
                     col = rand() % 11 + 65;
                 } else {
-                    col = rand() % 39 + 36;
+                    col = rand() % 39 + 37;
                 }
                 for (int i = 0; i < item.size(); i ++) {
                     if (item[i]->getCol() == col && item[i]->getRow() == row) {
@@ -455,35 +438,38 @@ Floor::Floor(Player *p, int ith) {
                 }
             }
         } else if (chamber == 4) {
-            bool result = false;
-            int col = 0;
-            int row = rand() % 10 + 3;
-            if (row <= 4) {
-                col = rand() % 23 + 38;
-            } else if (row == 5) {
-                col = rand() %  31 + 38;
-            } else if (row == 6) {
-                col = rand() % 34 + 38;
-            } else {
-                col = rand() % 15 + 61;
-            }
-            for (int i = 0; i < item.size(); i ++) {
-                if (item[i]->getCol() == col && item[i]->getRow() == row) {
-                    result = true;
+            while (1) {
+                bool result = false;
+                int col = 0;
+                int row = rand() % 10 + 3;
+                if (row <= 4) {
+                    col = rand() % 23 + 39;
+                } else if (row == 5) {
+                    col = rand() %  31 + 39;
+                } else if (row == 6) {
+                    col = rand() % 34 + 39;
+                } else {
+                    col = rand() % 15 + 61;
                 }
-            }
-            for (int i = 0; i < enemy.size(); i ++) {
-                if (enemy[i]->getCol() == col && enemy[i]->getRow() == row) {
-                    result = true;
+                for (int i = 0; i < item.size(); i ++) {
+                    if (item[i]->getCol() == col && item[i]->getRow() == row) {
+                        result = true;
+                    }
                 }
-            }
-            if (!result) {
-                goldSpawn(row, col);
-                break;
+                for (int i = 0; i < enemy.size(); i ++) {
+                    if (enemy[i]->getCol() == col && enemy[i]->getRow() == row) {
+                        result = true;
+                    }
+                }
+                if (!result) {
+                    goldSpawn(row, col);
+                    break;
+                }
             }
         }
         gold_count ++;
     }
+    player = p;
     int player_room = rand() % 5;
     int stair_room = rand() % 5;
     while (stair_room == player_room) {
@@ -507,14 +493,17 @@ Floor::Floor(Player *p, int ith) {
             if (!result) {
                 if (player_room == 0) {
                     player->changePos(row, col);
+                    display->changeChar(row, col, '@');
                 } else {
                     shared_ptr<Stair> s{new Stair(row, col)};
+                    display->changeChar(row, col, '\\');
                     stair = s;
                 }
                 break;
             }
         }
-    } else if (stair_room == 1 || player_room == 1) {
+    }
+    if (stair_room == 1 || player_room == 1) {
         while (1) {
             bool result = false;
             int row = rand() % 7 + 15;
@@ -530,20 +519,23 @@ Floor::Floor(Player *p, int ith) {
                 }
             }
             if (!result) {
-                if (player_room == 0) {
+                if (player_room == 1) {
                     player->changePos(row, col);
+                    display->changeChar(row, col, '@');
                 } else {
                     shared_ptr<Stair> s{new Stair(row, col)};
                     stair = s;
+                    display->changeChar(row, col, '\\');
                 }
                 break;
             }
         }
-    } else if (stair_room == 2 || player_room == 2) {
+    }
+    if (stair_room == 2 || player_room == 2) {
         while (1) {
             bool result = false;
             int row = rand() % 3 + 10;
-            int col = rand() % 12 + 37;
+            int col = rand() % 12 + 38;
             for (int i = 0; i < enemy.size(); i ++) {
                 if (enemy[i]->getCol() == col && enemy[i]->getRow() == row) {
                     result = true;
@@ -555,17 +547,20 @@ Floor::Floor(Player *p, int ith) {
                 }
             }
             if (!result) {
-                if (player_room == 0) {
+                if (player_room == 2) {
                     player->changePos(row, col);
+                    display->changeChar(row, col, '@');
                 } else {
                     shared_ptr<Stair> s{new Stair(row, col)};
+                    display->changeChar(row, col, '\\');
                     stair = s;
                 }
                 break;
             }
         }
         
-    } else if (stair_room == 3 || player_room == 3) {
+    }
+    if (stair_room == 3 || player_room == 3) {
         while (1) {
             bool result = false;
             int col = 0;
@@ -573,7 +568,7 @@ Floor::Floor(Player *p, int ith) {
             if (row <= 18) {
                 col = rand() % 11 + 65;
             } else {
-                col = rand() % 39 + 36;
+                col = rand() % 39 + 37;
             }
             for (int i = 0; i < enemy.size(); i ++) {
                 if (enemy[i]->getCol() == col && enemy[i]->getRow() == row) {
@@ -586,26 +581,29 @@ Floor::Floor(Player *p, int ith) {
                 }
             }
             if (!result) {
-                if (player_room == 0) {
+                if (player_room == 3) {
                     player->changePos(row, col);
+                    display->changeChar(row, col, '@');
                 } else {
                     shared_ptr<Stair> s{new Stair(row, col)};
+                    display->changeChar(row, col, '\\');
                     stair = s;
                 }
                 break;
             }
         }
-    } else if (stair_room == 4 || player_room == 4) {
+    }
+    if (stair_room == 4 || player_room == 4) {
         while (1) {
             bool result = false;
             int col = 0;
             int row = rand() % 10 + 3;
             if (row <= 4) {
-                col = rand() % 23 + 38;
+                col = rand() % 23 + 39;
             } else if (row == 5) {
-                col = rand() %  31 + 38;
+                col = rand() %  31 + 39;
             } else if (row == 6) {
-                col = rand() % 34 + 38;
+                col = rand() % 34 + 39;
             } else {
                 col = rand() % 15 + 61;
             }
@@ -620,17 +618,18 @@ Floor::Floor(Player *p, int ith) {
                 }
             }
             if (!result) {
-                if (player_room == 0) {
+                if (player_room == 4) {
                     player->changePos(row, col);
+                    display->changeChar(row, col, '@');
                 } else {
                     shared_ptr<Stair> s{new Stair(row, col)};
+                    display->changeChar(row, col, '\\');
                     stair = s;
                 }
                 break;
             }
         }
     }
-    cout << 3 << endl;
 }
 
 void Floor::itemSpawn(int row, int col) {
@@ -668,8 +667,13 @@ void Floor::goldSpawn(int row, int col) {
     } else {
         while (1) {
             bool result = false;
-            int x = rand() % 3 + -1;
-            int y = rand() % 3 + -1;
+            int x;
+            int y;
+            while (1) {
+                x = rand() % 3 + -1;
+                y = rand() % 3 + -1;
+                if (x != 0 || y != 0) break;
+            }
             for (int i = 0; i < item.size(); i ++) {
                 if (item[i]->getCol() == x && item[i]->getRow() == y) {
                     result = true;
@@ -682,8 +686,10 @@ void Floor::goldSpawn(int row, int col) {
             }
             if (!result) {
                 shared_ptr<Dragon> dragon{new Dragon{row+x, col+y}};
+                enemy.emplace_back(dragon);
                 shared_ptr<Item> gold{new DragonTreasure{dragon, row, col}};
-                display->changeChar(row+x, col+y, 'G');
+                display->changeChar(row, col, 'G');
+                display->changeChar(row+x, col+y, 'D');
                 item.emplace_back(gold);
                 break;
             }
@@ -751,15 +757,26 @@ void Floor:: move_player(string direction, string &action) {
                         if (item[i]->getSign() == "dragon" && item[i]->getIsDead()) {
                             player->changeGold(6);
                             display->changeChar(playery-1, playerx, '@');
-                            display->changeChar(playery, playerx, previous);
+                            display->changeChar(playery, playerx, '.');
+                            player->changePos(playery-1, playerx);
                             item.erase(item.begin()+i);
-                        } else {
+                            action += ", and picks up 6 gold";
+                        } else if (item[i]->getSign() != "dragon") {
                             player->changeGold(item[i]->getVal());
                             display->changeChar(playery-1, playerx, '@');
                             player->changePos(playery-1, playerx);
                             display->changeChar(playery, playerx, '.');
                             item.erase(item.begin()+i);
-                            action += ", and picks up 4 gold";
+                            if (item[i]->getVal() == 1) {
+                                action += ", and picks up 1 gold";
+                            } else if (item[i]->getVal() == 2) {
+                                action += ", and picks up 2 gold";
+                            } else {
+                                action += ", and picks up 4 gold";
+                            }
+                        } else {
+                            previous = '.';
+                            action = "You have to kill dragon before pick up dragon hoard";
                         }
                 }
             }
@@ -782,16 +799,28 @@ void Floor:: move_player(string direction, string &action) {
                     if (item[i]->getSign() == "dragon" && item[i]->getIsDead()) {
                         player->changeGold(6);
                         display->changeChar(playery+1, playerx, '@');
-                        display->changeChar(playery, playerx, previous);
+                        display->changeChar(playery, playerx, '.');
+                        player->changePos(playery+1, playerx);
                         item.erase(item.begin()+i);
-                    } else {
+                        action += ", and picks up 6 gold";
+                    } else if (item[i]->getSign() != "dragon") {
                         player->changeGold(item[i]->getVal());
                         display->changeChar(playery+1, playerx, '@');
                         player->changePos(playery+1, playerx);
                         display->changeChar(playery, playerx, '.');
                         item.erase(item.begin()+i);
-                        action += ", and picks up 4 gold";
+                        if (item[i]->getVal() == 1) {
+                            action += ", and picks up 1 gold";
+                        } else if (item[i]->getVal() == 2) {
+                            action += ", and picks up 2 gold";
+                        } else {
+                            action += ", and picks up 4 gold";
+                        }
+                    } else {
+                        previous = '.';
+                        action = "You have to kill dragon before pick up dragon hoard";
                     }
+
                 }
             }
         } else if (next == 92) {
@@ -810,20 +839,30 @@ void Floor:: move_player(string direction, string &action) {
         } else if (next == 'G') {
             for (int i = 0; i < item.size(); i ++) {
                 if ((item[i]->getRow() == playery) && (item[i]->getCol() == playerx-1)) {
-                            if (item[i]->getSign() == "dragon" && item[i]->getIsDead()) {
+                        if (item[i]->getSign() == "dragon" && item[i]->getIsDead()) {
                             player->changeGold(6);
                             display->changeChar(playery, playerx-1, '@');
-                            display->changeChar(playery, playerx, previous);
+                            display->changeChar(playery, playerx, '.');
+                            player->changePos(playery, playerx-1);
                             item.erase(item.begin()+i);
-                        } else {
+                            action += ", and picks up 6 gold";
+                        } else if (item[i]->getSign() != "dragon") {
                             player->changeGold(item[i]->getVal());
                             display->changeChar(playery, playerx-1, '@');
                             player->changePos(playery, playerx-1);
                             display->changeChar(playery, playerx, '.');
                             item.erase(item.begin()+i);
-                            action += ", and picks up 4 gold";
+                            if (item[i]->getVal() == 1) {
+                                action += ", and picks up 1 gold";
+                            } else if (item[i]->getVal() == 2) {
+                                action += ", and picks up 2 gold";
+                            } else {
+                                action += ", and picks up 4 gold";
+                            }
+                        } else {
+                            previous = '.';
+                            action = "You have to kill dragon before pick up dragon hoard";
                         }
-                
                 }
             }
         } else if (next == 92) {
@@ -842,20 +881,30 @@ void Floor:: move_player(string direction, string &action) {
         } else if (next == 'G') {
             for (int i = 0; i < item.size(); i ++) {
                 if ((item[i]->getRow() == playery) && (item[i]->getCol() == playerx+1)) {
-                        if (item[i]->getSign() == "dragon" && item[i]->getIsDead()) {
-                            player->changeGold(6);
-                            display->changeChar(playery, playerx+1, '@');
-                            display->changeChar(playery, playerx, previous);
-                            item.erase(item.begin()+i);
+                    if (item[i]->getSign() == "dragon" && item[i]->getIsDead()) {
+                        player->changeGold(6);
+                        display->changeChar(playery, playerx+1, '@');
+                        display->changeChar(playery, playerx, '.');
+                        player->changePos(playery, playerx+1);
+                        item.erase(item.begin()+i);
+                        action += ", and picks up 6 gold";
+                    } else if (item[i]->getSign() != "dragon") {
+                        player->changeGold(item[i]->getVal());
+                        display->changeChar(playery, playerx+1, '@');
+                        player->changePos(playery, playerx+1);
+                        display->changeChar(playery, playerx, '.');
+                        item.erase(item.begin()+i);
+                        if (item[i]->getVal() == 1) {
+                            action += ", and picks up 1 gold";
+                        } else if (item[i]->getVal() == 2) {
+                            action += ", and picks up 2 gold";
                         } else {
-                            player->changeGold(item[i]->getVal());
-                            display->changeChar(playery, playerx+1, '@');
-                            player->changePos(playery, playerx+1);
-                            display->changeChar(playery, playerx, '.');
-                            item.erase(item.begin()+i);
                             action += ", and picks up 4 gold";
                         }
-                
+                    } else {
+                        previous = '.';
+                        action = "You have to kill dragon before pick up dragon hoard";
+                    }
                 }
             }
         } else if (next == 92) {
@@ -877,17 +926,27 @@ void Floor:: move_player(string direction, string &action) {
                         if (item[i]->getSign() == "dragon" && item[i]->getIsDead()) {
                             player->changeGold(6);
                             display->changeChar(playery-1, playerx-1, '@');
-                            display->changeChar(playery, playerx, previous);
+                            display->changeChar(playery, playerx, '.');
+                            player->changePos(playery-1, playerx-1);
                             item.erase(item.begin()+i);
-                        } else {
+                            action += ", and picks up 6 gold";
+                        } else if (item[i]->getSign() != "dragon") {
                             player->changeGold(item[i]->getVal());
                             display->changeChar(playery-1, playerx-1, '@');
                             player->changePos(playery-1, playerx-1);
                             display->changeChar(playery, playerx, '.');
                             item.erase(item.begin()+i);
-                            action += ", and picks up 4 gold";
+                            if (item[i]->getVal() == 1) {
+                                action += ", and picks up 1 gold";
+                            } else if (item[i]->getVal() == 2) {
+                                action += ", and picks up 2 gold";
+                            } else {
+                                action += ", and picks up 4 gold";
+                            }
+                        } else {
+                            previous = '.';
+                            action = "You have to kill dragon before pick up dragon hoard";
                         }
-                    
                 }
             }
         } else if (next == 92) {
@@ -909,17 +968,27 @@ void Floor:: move_player(string direction, string &action) {
                         if (item[i]->getSign() == "dragon" && item[i]->getIsDead()) {
                             player->changeGold(6);
                             display->changeChar(playery-1, playerx+1, '@');
-                            display->changeChar(playery, playerx, previous);
+                            display->changeChar(playery, playerx, '.');
+                            player->changePos(playery-1, playerx+1);
                             item.erase(item.begin()+i);
-                        } else {
+                            action += ", and picks up 6 gold";
+                        } else if (item[i]->getSign() != "dragon") {
                             player->changeGold(item[i]->getVal());
                             display->changeChar(playery-1, playerx+1, '@');
                             player->changePos(playery-1, playerx+1);
                             display->changeChar(playery, playerx, '.');
                             item.erase(item.begin()+i);
-                            action += ", and picks up 4 gold";
+                            if (item[i]->getVal() == 1) {
+                                action += ", and picks up 1 gold";
+                            } else if (item[i]->getVal() == 2) {
+                                action += ", and picks up 2 gold";
+                            } else {
+                                action += ", and picks up 4 gold";
+                            }
+                        } else {
+                            previous = '.';
+                            action = "You have to kill dragon before pick up dragon hoard";
                         }
-                    
                 }
             }
         } else if (next == 92) {
@@ -941,17 +1010,27 @@ void Floor:: move_player(string direction, string &action) {
                         if (item[i]->getSign() == "dragon" && item[i]->getIsDead()) {
                             player->changeGold(6);
                             display->changeChar(playery+1, playerx-1, '@');
-                            display->changeChar(playery, playerx, previous);
+                            display->changeChar(playery, playerx, '.');
+                            player->changePos(playery+1, playerx-1);
                             item.erase(item.begin()+i);
-                        } else {
+                            action += ", and picks up 6 gold";
+                        } else if (item[i]->getSign() != "dragon") {
                             player->changeGold(item[i]->getVal());
                             display->changeChar(playery+1, playerx-1, '@');
                             player->changePos(playery+1, playerx-1);
                             display->changeChar(playery, playerx, '.');
                             item.erase(item.begin()+i);
-                            action += ", and picks up 4 gold";
+                            if (item[i]->getVal() == 1) {
+                                action += ", and picks up 1 gold";
+                            } else if (item[i]->getVal() == 2) {
+                                action += ", and picks up 2 gold";
+                            } else {
+                                action += ", and picks up 4 gold";
+                            }
+                        }  else {
+                            previous = '.';
+                            action = "You have to kill dragon before pick up dragon hoard";
                         }
-                    
                 }
             }
         } else if (next == 92) {
@@ -970,21 +1049,30 @@ void Floor:: move_player(string direction, string &action) {
         } else if (next == 'G') {
             for (int i = 0; i < item.size(); i ++) {
                 if ((item[i]->getRow() == playery+1) && (item[i]->getCol() == playerx+1)) {
-            
                         if (item[i]->getSign() == "dragon" && item[i]->getIsDead()) {
                             player->changeGold(6);
                             display->changeChar(playery+1, playerx+1, '@');
-                            display->changeChar(playery, playerx, previous);
+                            display->changeChar(playery, playerx, '.');
+                            player->changePos(playery+1, playerx+1);
                             item.erase(item.begin()+i);
-                        } else {
+                            action += ", and picks up 6 gold";
+                        } else if (item[i]->getSign() != "dragon") {
                             player->changeGold(item[i]->getVal());
                             display->changeChar(playery+1, playerx+1, '@');
                             player->changePos(playery+1, playerx+1);
                             display->changeChar(playery, playerx, '.');
                             item.erase(item.begin()+i);
-                            action += ", and picks up 4 gold";
+                            if (item[i]->getVal() == 1) {
+                                action += ", and picks up 1 gold";
+                            } else if (item[i]->getVal() == 2) {
+                                action += ", and picks up 2 gold";
+                            } else {
+                                action += ", and picks up 4 gold";
+                            }
+                        }  else {
+                            previous = '.';
+                            action = "You have to kill dragon before pick up dragon hoard";
                         }
-                
                 }
             }
         } else if (next == 92) {
@@ -1108,7 +1196,7 @@ void Floor::move_enemy(string &action) {
     for(int i = 0; i<enemy.size();++i) {
         if((enemy[i]->getCol()==playerx+1 || enemy[i]->getCol() == playerx-1 || enemy[i]->getCol() == playerx) && (enemy[i]->getRow() == playery+1 || enemy[i]->getRow() == playery-1 || enemy[i]->getRow() == playery)){
             enemy[i]->attack(&(*player), action);
-            if (enemy[i]->getSign() == 'M' && enemy[i]->getHostile() == false) {
+            if (enemy[i]->getSign() == 'M' && merchantHostile == false) {
                 int movex;
                 int movey;
                 while (1) {
@@ -1124,7 +1212,6 @@ void Floor::move_enemy(string &action) {
                     enemy[i]->changePos(newy, newx);
                     display->changeChar(newy, newx, enemy[i]->getSign());
                 }
-                
             }
             if(enemy[i]->getSign() == 'D') {
                 da = true;

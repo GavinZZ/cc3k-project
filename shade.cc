@@ -42,9 +42,9 @@ void Shade::beAttack(Dwarf *d, std::string &action) {
 }
 
 void Shade::beAttack(Elf *e, std::string &action) {
-    int hit = rand() % 2;
+    int hit1 = rand() % 2;
     int damage = ceil(30*100/(100+this->defence));
-    int total_damage = hit * damage;
+    int total_damage = hit1 * damage;
     health -= total_damage;
     string td = intToStr(total_damage);
     string string = ", E deals " + td + " to PC";

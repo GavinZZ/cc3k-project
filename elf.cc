@@ -28,6 +28,19 @@ void Elf::attack(Player *p, string &action) {
         string string = ", E deals 0 to PC";
         action += string;
     }
+    if (p->getSign() != 'D') {
+        action += " for the first time";
+    }
+    onHit = rand() % 2;
+    if (p->getSign() != 'D') {
+        if (onHit == 1) {
+            p->beAttack(this, action);
+            action += " for the second time";
+        } else {
+            string string = ", E deals 0 to PC for the second time";
+            action += string;
+        }
+    }
 }
 
 void Elf::beAttack(Shade* s, string &action) {

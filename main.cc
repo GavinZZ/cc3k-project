@@ -5,6 +5,7 @@
 #include "floor.h"
 #include "display.h"
 #include "character.h"
+#include <sstream>
 #include "item.h"
 class Shade;
 class Vampire;
@@ -12,6 +13,14 @@ class Goblin;
 class Drow;
 class Troll;
 using namespace std;
+
+string intToStr(int num) {
+    string result;
+    stringstream ss;
+    ss << num;
+    result = ss.str();
+    return result;
+}
 
 
 int main(int argc, const char* argv[]) {
@@ -63,7 +72,7 @@ int main(int argc, const char* argv[]) {
     string action = "Player character has spawned."; // used to print action mode
     int n = 1;
     cout<< f <<endl;
-    cout<<"Race: "<<race<<" Gold:"<<p->getGold();
+    cout<<"Race: "<<race<<" Gold: "<< p->getGold();
     cout<<"                                                   Floor: "<< n << endl;
     cout<<"HP: "<<p->getHealth()<<endl;
     cout<<"Atk: "<<p->getAttack()<<endl;
@@ -105,6 +114,15 @@ int main(int argc, const char* argv[]) {
                 n++;
                 if(n == 6){
                     cout<<"Congratulation! You reach the end of adventure."<<endl;
+                    int shade_gold = 0;
+                    string gold;
+                    if (p->getSign() == 'S') {
+                        shade_gold = p->getGold()*1.5;
+                        gold = intToStr(shade_gold);
+                    } else {
+                        gold = intToStr(p->getGold());
+                    }
+                    cout << "In this game, you have scored " + gold + "." << endl;
                     cout<<"Do you want to play again: r to play again, q to quit"<<endl;
                 } else {
                     p->changeCorrection();
@@ -155,8 +173,26 @@ int main(int argc, const char* argv[]) {
                 f.move_enemy(action);
             }
         } else if(s=="r"){
+            int shade_gold = 0;
+            string gold;
+            if (p->getSign() == 'S') {
+                shade_gold = p->getGold()*1.5;
+                gold = intToStr(shade_gold);
+            } else {
+                gold = intToStr(p->getGold());
+            }
+            cout << "In this game, you have scored " + gold + "." << endl;
             break;
         } else if(s=="q"){
+            int shade_gold = 0;
+            string gold;
+            if (p->getSign() == 'S') {
+                shade_gold = p->getGold()*1.5;
+                gold = intToStr(shade_gold);
+            } else {
+                gold = intToStr(p->getGold());
+            }
+            cout << "In this game, you have scored " + gold + "." << endl;
             cout<<"Thanks for your adventure. Good luck next time."<<endl;
             break;
         } else {
@@ -164,7 +200,7 @@ int main(int argc, const char* argv[]) {
         }
         if (n <= 5) {
             cout<<f;
-            cout<<"Race:: "<<race<<" Gold:"<<p->getGold();
+            cout<<"Race:: "<<race<<" Gold: "<< p->getGold();
             cout<<"                                                  "<<"Floor: "<<n << endl;
             cout<<"HP: "<<p->getHealth()<<endl;
             cout<<"Atk: "<<p->getAttack()<<endl;
@@ -174,6 +210,15 @@ int main(int argc, const char* argv[]) {
         }
         if (f.isLost()) {
             string read;
+            int shade_gold = 0;
+            string gold;
+            if (p->getSign() == 'S') {
+                shade_gold = p->getGold()*1.5;
+                gold = intToStr(shade_gold);
+            } else {
+                gold = intToStr(p->getGold());
+            }
+            cout << "In this game, you have scored " + gold + "." << endl;
             cout << "DEFEATED. You have been slained by enemies." << endl;
             cout << "Do you wanna try again?"<<endl;
             cout<<endl<<endl;
