@@ -1,10 +1,9 @@
 #ifndef _DISPLAY_H_
 #define _DISPLAY_H_
 
-#include "subject.h"
+#include <vector>
 #include <string>
-#include <map>
-#include "observer.h"
+#include <memory>
 
 class Display {
     std::vector<std::vector<char>> display;
@@ -18,3 +17,4 @@ public:
 };
 
 #endif
+
